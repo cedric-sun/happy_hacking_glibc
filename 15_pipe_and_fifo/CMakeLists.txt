@@ -1,1 +1,5 @@
+add_executable(atomicity atomicity.c)
+add_executable(fifo fifo.c)
+add_executable(pipe2 pipe2.c)
 add_executable(pipe pipe.c)
+add_executable(popen_pclose popen_pclose.c)
