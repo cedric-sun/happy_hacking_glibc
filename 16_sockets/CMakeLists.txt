@@ -1,0 +1,5 @@
+add_executable(inet6_socket inet6_socket.c)
+add_executable(inet_socket inet_socket.c)
+add_executable(interface_naming interface_naming.c)
+add_executable(sockaddr sockaddr.c)
+add_executable(unix_domain_socket unix_domain_socket.c)
