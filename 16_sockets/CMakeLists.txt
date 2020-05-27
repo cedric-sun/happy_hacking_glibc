@@ -7,3 +7,6 @@ add_executable(neo_name_lookup neo_name_lookup.c)
 add_executable(port_n_service_lookup port_n_service_lookup.c ../unsung_utils/utils.c)
 add_executable(sockaddr sockaddr.c)
 add_executable(unix_domain_socket unix_domain_socket.c)
+
+
+add_executable(protocol_lookup protocol_lookup.c ../unsung_utils/utils.c)
