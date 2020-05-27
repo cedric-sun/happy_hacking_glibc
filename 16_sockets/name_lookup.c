@@ -14,27 +14,32 @@
 #include <netinet/in.h>
 #include "../unsung_utils/utils.h"
 
+/********** NEVER NEVER USE `h_addr` as any variable name *****************/
+/** IT IS AN EVIL MACRO THAT YOU CAN'T DEBUG **/
 
+const char *h_addr2str(const void *h_addr444, int *const len) {
+    const char *tmp = str_inaddr((struct in_addr *) h_addr444);
+    *len = strlen(tmp);
+    return tmp;
+}
+
+const char *h_6addr2str(const void *h_addr666, int *const len) {
+    const char *tmp = str_in6addr((struct in6_addr *) h_addr666);
+    *len = strlen(tmp);
+    return tmp;
+}
 
 void hostent_info(struct hostent *demo_hostent) {
-    printf("h_name: %s\n", demo_hostent->h_name);
-    fputs("h_aliases: ", stdout);
-    for (char **cur = demo_hostent->h_aliases; *cur; cur++) {
-        printf("%s\t", *cur);
-    }
-    putchar('\n');
-    printf("h_addrtype: %s\t\th_length: %d\n",
-           demo_hostent->h_addrtype == AF_INET ? "AF_INET" : "AF_INET6", demo_hostent->h_length);
-    fputs("h_addr_list: ", stdout);
-    for (char **cur = demo_hostent->h_addr_list; *cur; cur++) {
-        if (demo_hostent->h_addrtype == AF_INET)
-            printf("%s\t", str_inaddr((struct in_addr *) *cur));
-        else if (demo_hostent->h_addrtype == AF_INET6)
-            printf("%s\t", str_in6addr((struct in6_addr *) *cur));
-        else
-            fputs("Unknown AF.", stderr);
-    }
-    putchar('\n');
+    int is_af_inet = demo_hostent->h_addrtype == AF_INET;
+    char addr_list_buf[1024]; // avoid 2 consecutive call to cat_ptr_list without saving the first result
+    strcpy(addr_list_buf, cat_ptr_list(demo_hostent->h_addr_list, is_af_inet ? h_addr2str : h_6addr2str, " | "));
+    printf("h_name: <%s> h_aliases: <%s> h_addrtype: %s h_length: %d h_addr_list: <%s>\n",
+           demo_hostent->h_name,
+           cat_ptr_list(demo_hostent->h_aliases, str2str, " | "),
+           is_af_inet ? "AF_INET" : "AF_INET6",
+           demo_hostent->h_length,
+           addr_list_buf
+    );
 }
 
 void gethostbyname_demo(const char *hostname) {
@@ -87,5 +92,5 @@ int main() {
     puts("---------------");
     gethostbyname_demo("google.com");
     puts("---------------");
-//    gethostbyname2_demo("google.com", AF_INET6);
+    gethostbyname2_demo("google.com", AF_INET6);
 };

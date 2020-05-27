@@ -19,4 +19,6 @@ struct hostent *hostent_deepcopy(struct hostent *hostent_ptr);
 
 void hostent_free(struct hostent *hostent_ptr);
 
+const char *str2str(const void *str, int *const len);
+
 #endif //HAPPY_HACKING_GLIBC_UTILS_H

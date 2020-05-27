@@ -39,6 +39,10 @@ const char *str_in6addr(struct in6_addr *addr) {
     return buf;
 }
 
+const char *str2str(const void *str, int *const len) {
+    *len = strlen(str);
+    return str;
+}
 
 const char *cat_ptr_list(const void *const *const ptr_list, const char *(*xxx2str)(const void *xxx, int *const len), const char *delim) {
     static char buf[10240];
