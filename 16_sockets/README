@@ -1,0 +1,23 @@
+About Endianness
+================
+
+0x1234abcd stored in the memory of a little endian machine would be:
+
+    <-low mem addr              high mem addr->
+              0xcd  0xab  0x34  0x12
+
+while stored in that of a big endian machine would be:
+
+    <-low mem addr              high mem addr->
+              0x12  0x34  0xab  0xcd
+
+The way I present the address space above (low addr toward left ; high addr toward right), as
+well as that of many utilities (e.g. hexdump, od; they need to print on terminal line) might
+be confusing.
+
+First, this has nothing to do with the bit shifting operator << and >>. 0x1234abcd is always the
+number in mind, and >>8 always makes it 0x001234ab. Sticking with the graphic representation of
+the address space above, on a big endian system this would exactly look like each byte is shifted
+1 byte toward right (high addr). But on a small endian system, it's shifting each byte 1 byte
+toward left (low addr). And at the end of the day, this is because we depict the address space
+in a horizontal, low-left, high-right way.
