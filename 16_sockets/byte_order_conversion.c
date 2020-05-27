@@ -2,14 +2,7 @@
 
 #include <stdio.h>
 #include <netinet/in.h>
-
-const char *mem_order_hexstr(const void *const start, const int nbyte) {
-    static char buf[2048];
-    for (int i = 0; i < nbyte; ++i) {
-        sprintf(buf + 5 * i, "0x%02x ", *((unsigned char *) start + i));
-    }
-    return buf;
-}
+#include "../unsung_utils/utils.h"
 
 
 int main() {

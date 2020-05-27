@@ -21,6 +21,7 @@ int make_named_unsock(const char *name) {
 
     // need to call this macro to determine the length argument passing to bind
     size_t my_unsock_len = SUN_LEN(&my_unsock_addr);
+    // TODO stddef.h offsetof()
     // This is due to the fact that unix domain socket name is a filesystem path
     // that has uncertain length.
     // This is not a problem for inet/inet6 socket, since their address is always
