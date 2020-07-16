@@ -21,4 +21,6 @@ void hostent_free(struct hostent *hostent_ptr);
 
 const char *str2str(const void *str, int *const len);
 
+struct sockaddr_in * init_inet_tcp_addr(struct sockaddr_in *const name, const uint32_t ip, const uint16_t port);
+
 #endif //HAPPY_HACKING_GLIBC_UTILS_H

@@ -110,3 +110,10 @@ const char *mem_order_hexstr(const void *const start, const int nbyte) {
     }
     return buf;
 }
+
+struct sockaddr_in * init_inet_tcp_addr(struct sockaddr_in *const name, const uint32_t ip, const uint16_t port) {
+    name->sin_family = AF_INET;
+    name->sin_port = htons(port);
+    name->sin_addr.s_addr = htonl(ip);
+    return name;
+}
