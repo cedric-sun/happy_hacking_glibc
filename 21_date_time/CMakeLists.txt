@@ -1,0 +1,1 @@
+add_executable(tm_strftime tm_strftime.c)

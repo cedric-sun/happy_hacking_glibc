@@ -117,3 +117,13 @@ struct sockaddr_in * init_inet_tcp_addr(struct sockaddr_in *const name, const ui
     name->sin_addr.s_addr = htonl(ip);
     return name;
 }
+
+void heavy_work_spin() {
+    unsigned int sum = 0;
+    for (int j = 0; j < 1e7; ++j) {
+        if (j % 1)
+            sum += j;
+        else
+            sum -= j;
+    }
+}

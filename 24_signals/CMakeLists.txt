@@ -1,0 +1,5 @@
+add_executable(signal signal.c)
+add_executable(sigaction sigaction.c ../unsung_utils/utils.c)
+add_executable(SIGALRM SIGALRM.c ../unsung_utils/utils.c)
+add_executable(SIGINT SIGINT.c)
+add_executable(raise_blocked raise_blocked.c)

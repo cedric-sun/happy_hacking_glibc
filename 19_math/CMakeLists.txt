@@ -1,0 +1,1 @@
+add_executable(19_8_pseudo_random 19_8_pseudo_random.c)

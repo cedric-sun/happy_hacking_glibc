@@ -96,8 +96,23 @@ void ignored_b() { //TODO
 }
 
 void cancellation_disabled() {
-    FILE *urand_stream = fopen("/dev/urandom", "c");
+    FILE *urand_stream = fopen("/dev/urandom", "rc");
     fclose(urand_stream);
+}
+
+// reject creating a new file
+void must_create_wo() {
+    FILE *ncwo = fopen("./ro_data.txt", "wx");
+    if (ncwo == NULL) {
+        perror("fopen wx mode");
+        return;
+    }
+    fclose(ncwo);
+}
+
+void mmap_read() {
+    FILE *mmap_ro = fopen("./ro_data.txt", "rm");
+    fclose(mmap_ro);
 }
 
 int main() {
@@ -105,11 +120,12 @@ int main() {
 //    read_only();
 //    write_only();
 //    append_only();
-    read_write_keep_init();
+//    read_write_keep_init();
 //    ignored_b();
 
     /** glibc specific **/
 //    cancellation_disabled();
+    must_create_wo();
 }
 
 

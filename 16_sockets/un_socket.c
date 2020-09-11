@@ -33,7 +33,7 @@ int make_named_unsock(const char *name) {
     int bind_flag = bind(my_unsock_fd, &my_unsock_addr, my_unsock_len);
     if (bind_flag == -1) {
         perror("bind");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
 
     return my_unsock_fd;
