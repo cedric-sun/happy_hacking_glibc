@@ -46,7 +46,7 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    volatile int counter = 0;
+    volatile int counter = 0; // todo: make sure volatile semantics in C
 
     for (int i = 0; !server_shutdown; ++i) {
         printf("serving request #%d\n", i);
