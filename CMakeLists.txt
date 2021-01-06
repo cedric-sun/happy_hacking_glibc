@@ -6,6 +6,7 @@ set(CMAKE_C_STANDARD 11)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
+add_subdirectory(0_undoc)
 add_subdirectory(15_pipe_and_fifo)
 add_subdirectory(26_processes)
 add_subdirectory(2_error)
